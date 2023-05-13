@@ -1,18 +1,23 @@
 package com.example.arx.model;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.deidentifier.arx.AttributeType;
 
 
 public class Attribute {
 
     private String field;
-    private AttributeType attributeType;
+    private AttributeTypeEnum attributeTypeEnum;
     private List<String[]> hierarchy;
 
-    public Attribute(String field, AttributeType attributeType, List<String[]> hierarchy) {
+    public Attribute(String field,
+                     AttributeTypeEnum attributeTypeEnum,
+                     List<String[]> hierarchy) {
         this.field = field;
-        this.attributeType = attributeType;
+        this.attributeTypeEnum = attributeTypeEnum;
         this.hierarchy = hierarchy;
     }
 
@@ -24,12 +29,12 @@ public class Attribute {
         this.field = field;
     }
 
-    public AttributeType getAttributeType() {
-        return attributeType;
+    public AttributeTypeEnum getAttributeTypeEnum() {
+        return attributeTypeEnum;
     }
 
-    public void setAttributeType(AttributeType attributeType) {
-        this.attributeType = attributeType;
+    public void setAttributeTypeEnum(AttributeTypeEnum attributeTypeEnum) {
+        this.attributeTypeEnum = attributeTypeEnum;
     }
 
     public List<String[]> getHierarchy() {
@@ -44,7 +49,7 @@ public class Attribute {
     public String toString() {
         return "Attribute{" +
                 "field='" + field + '\'' +
-                ", attributeType=" + attributeType +
+                ", attributeTypeEnum=" + attributeTypeEnum +
                 ", hierarchy=" + hierarchy +
                 '}';
     }
