@@ -11,16 +11,34 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-    @Service
+@Service
     public class AnonymizeService {
 
-        /**
-         *
-         * @param request
-         * @return
-         * @throws IOException
-         */
+    /**
+     * Anonymizes the data provided in the request.
+     *
+     * This method takes an AnonymizedDataRequest object, which contains
+     * the data to be anonymized, the types of the attributes in the data,
+     * the privacy models to use, and the suppression limit. It then uses
+     * the ARXAnonymizer to anonymize the data according to the specified
+     * privacy models and suppression limit, and returns the anonymized
+     * data in a List of String arrays.
+     *
+     * @param request The AnonymizedDataRequest object containing the data
+     *                to be anonymized, the types of the attributes in the
+     *                data, the privacy models to use, and the suppression
+     *                limit.
+     * @return A List of String arrays representing the anonymized data.
+     * @throws IOException If an input or output exception occurred.
+     *
+     * @see AnonymizedDataRequest
+     * @see ARXAnonymizer
+     * @see Data
+     * @see ARXConfiguration
+     * @see ARXResult
+     */
         public List<String[]> anonymize(AnonymizedDataRequest request) throws IOException {
+
             ARXAnonymizer anonymizer = new ARXAnonymizer();
             Data data = Data.create(request.getData());
             setAttributeTypes(data.getDefinition(), request.getAttributes());

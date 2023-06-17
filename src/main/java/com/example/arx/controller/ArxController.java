@@ -25,8 +25,14 @@ public class ArxController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<String[]>>  anonymizeData( @RequestBody AnonymizedDataRequest request) throws IOException {
-        List<String[]> anonymizedData = anonymizeService.anonymize(request);
-        return ResponseEntity.ok(anonymizedData);
+        try {
+            List<String[]> anonymizedData = anonymizeService.anonymize(request);
+            return ResponseEntity.ok(anonymizedData);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity("An unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
